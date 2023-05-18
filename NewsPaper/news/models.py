@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator
 from django.urls import reverse
 
 
+
 class Author(models.Model):
 
     user_rate = models.IntegerField(default=0)
@@ -50,8 +51,8 @@ class Post(models.Model):
 
 
     category = models.CharField(max_length=1,
-                                choices=POSITIONS,
-                                default=news)
+                                choices=POSITIONS
+                                )
 
 
     date_created = models.DateField(auto_now_add=True)
