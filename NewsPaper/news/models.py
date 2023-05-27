@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group
 
 
 
+
 class Author(models.Model):
 
     user_rate = models.IntegerField(default=0)

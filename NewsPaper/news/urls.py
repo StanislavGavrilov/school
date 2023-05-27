@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.urls import path, include
 # Импортируем созданное нами предстление
 from .views import PostsList,PostDetail
@@ -5,6 +6,13 @@ from .views import ArticleCreate, ArticleUpdate, ArticleDelete, PostsListSearch
 from .views import NewsCreate, NewsUpdate, NewsDelete
 from .views import upgrade_me
 
+=======
+from django.urls import path
+# Импортируем созданное нами представление
+from .views import PostsList,PostDetail
+from .views import ArticleCreate, ArticleUpdate, ArticleDelete, PostsListSearch
+from .views import NewsCreate, NewsUpdate, NewsDelete
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
 
 
 urlpatterns = [
@@ -26,6 +34,7 @@ urlpatterns = [
    path('articles/create/', ArticleCreate.as_view(), name='article_create'),
    path('articles/<int:pk>/edit/', ArticleUpdate.as_view(), name='article_update'),
    path('articles/<int:pk>/delete/', ArticleDelete.as_view(), name='article_delete'),
+<<<<<<< HEAD
    path('upgrade/', upgrade_me, name = 'upgrade'),
 
 
@@ -33,4 +42,6 @@ urlpatterns = [
 
 
 
+=======
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
 ]

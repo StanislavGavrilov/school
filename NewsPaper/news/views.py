@@ -6,10 +6,13 @@ from django.urls import reverse_lazy
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView)
 from .forms import PostForm
+<<<<<<< HEAD
 from django.shortcuts import redirect
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
+=======
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
 
 
 class PostsList(ListView):
@@ -66,25 +69,38 @@ class PostDetail(DetailView):
     context_object_name = 'post'
 
 
+<<<<<<< HEAD
 class ArticleCreate( PermissionRequiredMixin,CreateView,):
     """ Представление для создания статьи. """
     permission_required = ('news.add_post',)
+=======
+class ArticleCreate(CreateView):
+    """ Представление для создания статьи. """
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
     form_class = PostForm
     model = Post
     template_name = 'product_edit.html'
-
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
         context['page_title'] = "Добавить статью"
         return context
 
+<<<<<<< HEAD
+    def get_context_data(self, **kwargs) -> dict:
+        context = super().get_context_data(**kwargs)
+        context['page_title'] = "Добавить статью"
+        return context
+
+=======
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
     def form_valid(self, form):
         post = form.save(commit=False)
         post.category = 'A'
         return super().form_valid(form)
 
 
+<<<<<<< HEAD
 class ArticleUpdate(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     permission_required = ('news.change_post',)
     """ Представление для редактирования статьи. """
@@ -94,6 +110,13 @@ class ArticleUpdate(LoginRequiredMixin,PermissionRequiredMixin, UpdateView):
     template_name = 'product_edit.html'
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
+=======
+class ArticleUpdate(UpdateView):
+    """ Представление для редактирования статьи. """
+    form_class = PostForm
+    model = Post
+    template_name = 'product_edit.html'
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
@@ -114,9 +137,13 @@ class ArticleDelete(DeleteView):
         return context
 
 
+<<<<<<< HEAD
 class NewsCreate(PermissionRequiredMixin,CreateView):
 
     permission_required = ('news.add_post',)
+=======
+class NewsCreate(CreateView):
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
     """ Представление для создания новости. """
     form_class = PostForm
     model = Post
@@ -133,15 +160,22 @@ class NewsCreate(PermissionRequiredMixin,CreateView):
         return super().form_valid(form)
 
 
+<<<<<<< HEAD
 class NewsUpdate(LoginRequiredMixin,PermissionRequiredMixin, UpdateView,):
 
     permission_required = ('news.change_post',)
+=======
+class NewsUpdate(UpdateView):
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
     """ Представление для редактирования новости. """
     form_class = PostForm
     model = Post
     template_name = 'product_edit.html'
+<<<<<<< HEAD
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
+=======
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
 
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)
@@ -159,6 +193,7 @@ class NewsDelete(DeleteView):
         context = super().get_context_data(**kwargs)
         context['page_title'] = "Удалить новость"
         context['previous_page_url'] = reverse_lazy('posts_list')
+<<<<<<< HEAD
         return context
 
 
@@ -171,3 +206,6 @@ def upgrade_me(request):
     if not request.user.groups.filter(name='authors').exists():
         premium_group.user_set.add(user)
     return redirect('/')
+=======
+        return context
+>>>>>>> b65e2e99573857ac885070867fa94d2889b4f962
