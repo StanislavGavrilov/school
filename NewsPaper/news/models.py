@@ -4,6 +4,10 @@ from django.db.models import Sum
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.urls import reverse
+from allauth.account.forms import SignupForm
+from django.contrib.auth.models import Group
+
+
 
 
 class Author(models.Model):
@@ -50,8 +54,8 @@ class Post(models.Model):
 
 
     category = models.CharField(max_length=1,
-                                choices=POSITIONS,
-                                default=news)
+                                choices=POSITIONS
+                                )
 
 
     date_created = models.DateField(auto_now_add=True)
@@ -116,4 +120,18 @@ class Comment(models.Model):
         self.comment_rate -= 1
 
         self.save()
+
+
+
+
+
+class BasicSignupForm(SignupForm):
+
+    def save(self, request):
+        user = super(BasicSignupForm, self).save(request)
+        basic_group = Group.objects.get(name='common')
+        basic_group.user_set.add(user)
+        return user
 # Create your models here.
+
+
